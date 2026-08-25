@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Calculadora de Trabalho </title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <hgroup>
+            <h1> Calculadora de Trabalho </h1>
+            <h4> Calcule o valor do seu trabalho </h4>
+        </hgroup>
+    </header>
+
+    <main>
+        <form id="passo1" class="passo1">
+            <p> <span class="passo">Passo 1:</span> Informe o valor da hora trabalhada </p>
+            <div>
+                <label for="valor"> Valor Hora: </label>
+                <input type="number" name="valor" id="valor" required>
+            </div>
+            <button id="enviarValor" type="submit"> Enviar </button>
+        </form>
+
+        <form action="#" method="post" class="passo2">
+            <p> <span class="passo">Passo 2:</span> Informe a quantidade de horas trabalhadas do dia </p>
+            <label for="data"> Data: </label>
+            <input type="date" name="Data" id="data" required>
+            <label for="hEntrada"> Horas de Entrada: </label>
+            <input type="time" name="hEntrada" id="hEntrada" required>
+            <label for="hSaida"> Horas de Saída: </label>
+            <input type="time" name="hSaida" id="hSaida" required>
+            <button id="enviarDado" type="submit"> Enviar </button>
+        </form>
+
+        <div class="passo3">
+            <P> <span class="passo">Passo 3:</span> Clique para somar todas as horas <span class="opcional">(Opcional)</span></P>
+            <form action="#" method="post">
+                <label for="desconto">Digite se há um valor a descontar: </label>
+                <input type="number" name="desconto" id="desconto">
+                <label for="somar">Digite se há um valor a acrescentar: </label>
+                <input type="number" name="somar" id="somar">
+                <button> SOMAR TODAS AS HORAS </button>
+            </form>
+        </div>
+
+        <div id="resultado" class="resultado">
+            <h3> Dados fornecidos</h3>
+            <div id="dados" class="dados">
+                <p> Data: </p>
+                <p id="resultadoData"> </p>
+                <p> Hora Entrada: </p>
+                <P id="resultadoHEntrada"></P>
+                <p> Hora Saída: </p>
+                <p id="resultadoHSaida"></p>
+                <p>Total hotas do dia: </p>
+                <p id="totalHorasDia"></p>
+            </div>
+            <div id="resultadoGeral">
+                <h3> Calculo </h3>
+                <p> Valor da Hora: </p>
+                <p id="valorHora"></p>
+                <p> Total de Horas Trabalhadas: </p>
+                <p id="totalHoraGeral"></p>
+                <p> Valor Bruto: </p>
+                <p id="valorBruto"></p>
+                <p>(-)  Valor á Descontar: </p>
+                <p id="valorDesconto"></p>
+                <p>(+) Valor á Acrescentar: </p>
+                <p id="valorSomar"></p>
+                <p>(=) Valor Líquido: </p>
+                <p id="valorLiquido"></p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
