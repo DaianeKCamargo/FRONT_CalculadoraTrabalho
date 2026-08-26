@@ -1,0 +1,5 @@
+VERIFICA O TTPO DO DADO
+
+console.log(typeof parseFloat(valorHora.value)); -> parseFloat converte o dado
+
+console.log (typeof valorHora.value); -> valorHora.value pega o valor de dentro do input

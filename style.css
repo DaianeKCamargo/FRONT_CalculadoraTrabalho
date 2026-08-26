@@ -81,7 +81,7 @@ input, label {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: 80%;
+    width: 90%;
     border-top: 1px solid #333;
     border-left: 1px solid #333;
     border-right: 3px solid #333;
@@ -90,6 +90,13 @@ input, label {
     margin: 3rem;
     padding: 2rem;
     background-color: #fff;
+}
+
+.calculo {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 .dados {
