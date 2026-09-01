@@ -175,4 +175,8 @@ button {
         font-size: 1.4rem;
         padding: 0.5rem;
     }
+
+    .dados {
+        flex-direction: column;
+    }
 }

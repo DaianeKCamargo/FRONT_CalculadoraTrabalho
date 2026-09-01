@@ -11,12 +11,19 @@ passo1.addEventListener("submit", function (evento) {
     verValorHora.textContent = (" R$ " + valorHr);
 });
 
+// ----------------------------------------------------------------------
+
 // PASSO 2
 const passo2 = document.getElementById('passo2');
 const dataE = document.getElementById('dataE');
 const entradaHoras = document.getElementById('hEntrada');
 const dataS = document.getElementById('dataS')
 const saidaHoras = document.getElementById('hSaida');
+const verDataE = document.getElementById('resultadoDataE');
+const verHEntrada = document.getElementById('resultadoHEntrada');
+const verDataS = document.getElementById('resultadoDataS');
+const verHSaida = document.getElementById('resultadoHSaida');
+const verTotalDia = document.getElementById('totalHorasDia');
 
 let dtEntrada = 0;
 let horasE = 0;
@@ -27,7 +34,15 @@ let hrsEntrada = 0;
 let minutosEntrada = 0;
 let hrsSaida = 0;
 let minutosSaida = 0;
+let dataFormatadaE = 0;
+let dataFormatadaS = 0;
+let totalMinEntrada = 0;
+let totalMinSaida = 0;
+
 let tempoDiaTrabalhado = 0;
+let totalDHoras = 0;
+let totalDMinutos = 0;
+
 
 passo2.addEventListener("submit", function (evento) {
     evento.preventDefault();
@@ -41,20 +56,30 @@ passo2.addEventListener("submit", function (evento) {
     minutosEntrada = parseFloat(horasE.split(":")[1]);
     hrsSaida = parseFloat(horasS.split(":")[0]);
     minutosSaida = parseFloat(horasS.split(":")[1]);
+    dataFormatadaE = dtEntrada.split("-").reverse().join("/");
+    dataFormatadaS = dtSaida.split("-").reverse().join("/");
 
     totalMinEntrada = (hrsEntrada * 60) + minutosEntrada;
     totalMinSaida = (hrsSaida * 60) + minutosSaida;
 
-    if (totalMinSaida > totalMinEntrada) {
+    if (totalMinSaida >= totalMinEntrada) {
         tempoDiaTrabalhado = totalMinSaida - totalMinEntrada
     } else {
         tempoDiaTrabalhado = (1440 - totalMinEntrada) + totalMinSaida
     }
 
+    totalDHoras = Math.floor(tempoDiaTrabalhado / 60);
 
-    console.log(typeof totalMinEntrada);
-    console.log(typeof totalMinSaida);
+    totalDMinutos = tempoDiaTrabalhado % 60;
 
-    console.log(tempoDiaTrabalhado);
+    verDataE.textContent = dataFormatadaE;
+    verHEntrada.textContent = horasE;
+    verDataS.textContent = dataFormatadaS;
+    verHSaida.textContent = horasS;
+    verTotalDia.textContent = totalDHoras + "h " + totalDMinutos + "min";
+
 
 });
+
+// ---------------------------------------------------------------------------
+// PASSO 3
