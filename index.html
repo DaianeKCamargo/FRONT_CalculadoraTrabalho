@@ -35,11 +35,15 @@
             <label for="dataE"> Data Entrada: </label>
             <input type="date" name="DataE" id="dataE" required>
             <label for="hEntrada"> Horas de Entrada: </label>
-            <input type="time" name="hEntrada" id="hEntrada" required>
+            <input type="time" name="hEntrada" id="hEntrada" required><br>
             <label for="dataS"> Data Saída: </label>
             <input type="date" name="DataS" id="dataS" required>
             <label for="hSaida"> Horas de Saída: </label>
-            <input type="time" name="hSaida" id="hSaida" required>
+            <input type="time" name="hSaida" id="hSaida" required> <br>
+            <label for="hSaidaD"> Saída Descanso: </label>
+            <input type="time" name="hSaidaD" id="hSaidaD" required>
+            <label for="hVoltaD"> Volta Descanso: </label>
+            <input type="time" name="hVoltaD" id="hVoltaD" required>
             <button id="enviarDado" type="submit"> Enviar </button>
         </form>
 
@@ -57,18 +61,22 @@
 
         <div id="resultado" class="resultado">
             <h3> Dados fornecidos</h3>
-            <div id="dados" class="dados">
-                <p class="passo"> Data Entrada: </p>
-                <p id="resultadoDataE"> </p>
-                <p class="passo"> Hora Entrada: </p>
-                <P id="resultadoHEntrada"></P>
-                <p class="passo"> Data Saída: </p>
-                <p id="resultadoDataS"> </p>
-                <p class="passo"> Hora Saída: </p>
-                <p id="resultadoHSaida"></p>
-                <p class="passo">Total horas do dia: </p>
-                <p id="totalHorasDia"></p>
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data Entrada</th>
+                        <th>Horas Entrada</th>
+                        <th>Data Saída</th>
+                        <th>Horas Saída </th>
+                        <th>Saida Descanso</th>
+                        <th>Volta Descanso</th>
+                        <th>Tempo Descanso do Dia</th>
+                        <th>Total Horas Dia Trabalhado</th>
+                    </tr>
+                </thead>
+                <tbody id="dados" class="dados">
+                </tbody>
+            </table>
             <div id="resultadoGeral" class="resultadoGeral">
                 <h3> Cálculo </h3>
                 <div class="calculo">

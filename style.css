@@ -100,12 +100,7 @@ input, label {
 }
 
 .dados {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem;
-    border-bottom: 1px solid #c4bdbd;
+    text-align: center;
 }
 
 
@@ -174,9 +169,5 @@ button {
         margin: 1rem auto;
         font-size: 1.4rem;
         padding: 0.5rem;
-    }
-
-    .dados {
-        flex-direction: column;
     }
 }
