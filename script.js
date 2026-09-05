@@ -8,8 +8,14 @@ let valorHr = 0;
 passo1.addEventListener("submit", function (evento) {
     evento.preventDefault();
     valorHr = parseFloat(valorHora.value);
+    valorHora.disabled = true;
     verValorHora.textContent = (" R$ " + valorHr);
+
+    passo1.classList.add("concluido");
+
 });
+
+
 
 // ----------------------------------------------------------------------
 
@@ -28,6 +34,7 @@ const verSomaHoras = document.getElementById('totalHoraGeral');
 const verValorBruto = document.getElementById('valorBruto');
 
 
+
 // armazenar o valor dentro da variavel
 let dtEntrada = 0;
 let horasE = 0;
@@ -35,6 +42,10 @@ let dtSaida = 0;
 let horasS = 0;
 let saidaDescanso = 0;
 let voltaDescanso = 0;
+
+// armazenar dentro de um array
+let registros = [];
+
 
 // conversão para o calculo de horas
 let hrsEntrada = 0;
@@ -70,13 +81,15 @@ let valorBruto = 0;
 passo2.addEventListener("submit", function (evento) {
     evento.preventDefault();
 
+    // pega os dados do formulário
     dtEntrada = dataE.value;
     horasE = entradaHoras.value;
     dtSaida = dataS.value;
     horasS = saidaHoras.value;
     saidaDescanso = HSaidaD.value;
-    voltaDescanso = HVoltaD.value; 
+    voltaDescanso = HVoltaD.value;
 
+    // sepera-os em array e faz conversões
     hrsEntrada = parseFloat(horasE.split(":")[0]);
     minutosEntrada = parseFloat(horasE.split(":")[1]);
     hrsSaida = parseFloat(horasS.split(":")[0]);
@@ -113,8 +126,9 @@ passo2.addEventListener("submit", function (evento) {
     totalGHoras = Math.floor(totalHorasDecimal);
     totalGMinutos = totalMinutosTrabalhados % 60;
 
+
     // calculo valor horas
-    valorBruto = parseFloat(valorHr* totalHorasDecimal);
+    valorBruto = parseFloat(valorHr * totalHorasDecimal);
 
     // Visualização dos dados na tela
     dados.innerHTML += `<tr><td>${dataFormatadaE}</td><td>${horasE}</td><td>${dataFormatadaS}</td><td>${horasS}</td><td>${saidaDescanso}</td><td>${voltaDescanso}</td><td>${totalHDescanso}h ${totalMinDescanso}min</td><td>${totalDHoras}h ${totalDMinutos}min </td></tr>`;
@@ -127,6 +141,30 @@ passo2.addEventListener("submit", function (evento) {
 // ---------------------------------------------------------------------------
 // PASSO 3
 
+const passo3 = document.getElementById('passo3');
+const VDesc = document.getElementById('desconto');
+const VAcres = document.getElementById('somar');
+const verValorDesc = document.getElementById('valorDesconto');
+const verValorAcres = document.getElementById('valorSomar');
+const verValorLiqui = document.getElementById('valorLiquido');
+
+let valorDesconto = 0.0;
+let valorAcrescimo = 0.0;
+let valorLiquido = 0.0;
+
+passo3.addEventListener("submit", function (evento) {
+    evento.preventDefault();
+
+    valorDesconto = parseFloat(VDesc.value) || 0.0;
+    valorAcrescimo = parseFloat(VAcres.value) || 0.0;
+
+    valorLiquido = (valorBruto - valorDesconto) + valorAcrescimo;
+
+    verValorDesc.textContent = ("R$" + valorDesconto);
+    verValorAcres.textContent = ("R$" + valorAcrescimo);
+    verValorLiqui.textContent = ("R$" + valorLiquido);
+
+});
 
 
 

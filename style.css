@@ -103,6 +103,11 @@ input, label {
     text-align: center;
 }
 
+/* JS */
+.concluido {
+    border: 2px solid greenyellow;
+}
+
 
 button {
     display: block;

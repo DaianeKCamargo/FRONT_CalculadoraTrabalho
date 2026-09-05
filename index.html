@@ -25,7 +25,7 @@
             <p> <span class="passo">Passo 1:</span> Informe o valor da hora trabalhada </p>
             <div>
                 <label for="valor"> Valor Hora: </label>
-                <input type="number" name="valor" id="valor" required>
+                <input type="number" name="valor" id="valor" step="0.01" required>
             </div>
             <button id="enviarValor" type="submit"> Enviar </button>
         </form>
@@ -50,12 +50,12 @@
         <div class="passo3">
             <P> <span class="passo">Passo 3:</span> Clique para somar todas as horas <span
                     class="opcional">(Opcional)</span></P>
-            <form action="#" method="post">
+            <form id="passo3">
                 <label for="desconto">Digite se há um valor a descontar: </label>
-                <input type="number" name="desconto" id="desconto">
+                <input type="number" name="desconto" id="desconto" step="0.01"><br>
                 <label for="somar">Digite se há um valor a acrescentar: </label>
-                <input type="number" name="somar" id="somar">
-                <button> SOMAR TODAS AS HORAS </button>
+                <input type="number" name="somar" id="somar" step="0.01">
+                <button id="enviarSoma" type="submit"> SOMAR TODAS AS HORAS </button>
             </form>
         </div>
 
@@ -72,6 +72,7 @@
                         <th>Volta Descanso</th>
                         <th>Tempo Descanso do Dia</th>
                         <th>Total Horas Dia Trabalhado</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody id="dados" class="dados">
