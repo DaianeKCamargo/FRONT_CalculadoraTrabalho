@@ -104,9 +104,14 @@ label {
     text-align: center;
 }
 
+.destaque {
+    background-color: #f1f1f1;
+}
+
 /* JS */
 .concluido {
-    border: 2px solid greenyellow;
+    border: 3px solid green;
+    box-shadow: 0 0 5px #333;
 }
 
 

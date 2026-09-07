@@ -76,10 +76,16 @@ let totalGMinutos = 0;
 let totalHorasDecimal = 0;
 let valorBruto = 0;
 
+function excluirRegistro(indice) {
+    registros.splice(indice, 1);
+    mostrarRegistros();
+    calcularTotal();
+}
+
 function mostrarRegistros() {
     dados.innerHTML = "";
 
-    registros.forEach (function(registro) {
+    registros.forEach (function(registro, indice) {
         dados.innerHTML += `
             <tr> 
                 <td>${registro.dataEntrada}</td>
@@ -90,6 +96,9 @@ function mostrarRegistros() {
                 <td>${registro.voltaDescanso}</td>
                 <td>${registro.tempoDescanso}</td>
                 <td>${registro.tempoTrabalhado}</td>
+                <td>
+                    <button onclick="excluirRegistro(${indice})"> Excluir </button>
+                </td>
             </tr>
         `;
     });
@@ -184,6 +193,7 @@ passo2.addEventListener("submit", function (evento) {
 
     verSomaHoras.textContent = (totalGHoras + "h " + totalGMinutos + "min");
     verValorBruto.textContent = ("R$" + valorBruto);
+
     
 });
 
