@@ -43,7 +43,7 @@ let horasS = 0;
 let saidaDescanso = 0;
 let voltaDescanso = 0;
 
-// armazenar dentro de um array
+// armazenar dentro de um array o objeto
 let registros = [];
 
 
@@ -76,11 +76,40 @@ let totalGMinutos = 0;
 let totalHorasDecimal = 0;
 let valorBruto = 0;
 
+function mostrarRegistros() {
+    dados.innerHTML = "";
 
+    registros.forEach (function(registro) {
+        dados.innerHTML += `
+            <tr> 
+                <td>${registro.dataEntrada}</td>
+                <td>${registro.horasEntrada}</td>
+                <td>${registro.dataSaida}</td>
+                <td>${registro.horasSaida}</td>
+                <td>${registro.saidaDescanso}</td>
+                <td>${registro.voltaDescanso}</td>
+                <td>${registro.tempoDescanso}</td>
+                <td>${registro.tempoTrabalhado}</td>
+            </tr>
+        `;
+    });
+}
+
+function calcularTotal() {
+    let totalMinutos = 0;
+    registros.forEach(function (registro) {
+        totalMinutos += registro.totalMinutos;
+    });
+
+    let horas = Math.floor(totalMinutos / 60);
+    let minutos = totalMinutos % 60;
+
+    verSomaHoras.textContent = (horas + "h" + minutos + "min");
+}
 
 passo2.addEventListener("submit", function (evento) {
     evento.preventDefault();
-
+    
     // pega os dados do formulário
     dtEntrada = dataE.value;
     horasE = entradaHoras.value;
@@ -88,7 +117,7 @@ passo2.addEventListener("submit", function (evento) {
     horasS = saidaHoras.value;
     saidaDescanso = HSaidaD.value;
     voltaDescanso = HVoltaD.value;
-
+    
     // sepera-os em array e faz conversões
     hrsEntrada = parseFloat(horasE.split(":")[0]);
     minutosEntrada = parseFloat(horasE.split(":")[1]);
@@ -107,7 +136,7 @@ passo2.addEventListener("submit", function (evento) {
     tempoDiaDescanso = totalMinVDescanso - totalMinSDescanso;
     totalHDescanso = Math.floor(tempoDiaDescanso / 60);
     totalMinDescanso = tempoDiaDescanso % 60;
-
+    
     // calculo horas entrada e saida por dia
     totalMinEntrada = (hrsEntrada * 60) + minutosEntrada;
     totalMinSaida = (hrsSaida * 60) + minutosSaida;
@@ -119,23 +148,43 @@ passo2.addEventListener("submit", function (evento) {
     // Math.floor arredonda para baixo o valor mostrado em float
     totalDHoras = Math.floor(tempoDiaTrabalhado / 60);
     totalDMinutos = tempoDiaTrabalhado % 60;
-
+    
     // calculo total horas geral
     totalMinutosTrabalhados += tempoDiaTrabalhado;
     totalHorasDecimal = totalMinutosTrabalhados / 60;
     totalGHoras = Math.floor(totalHorasDecimal);
     totalGMinutos = totalMinutosTrabalhados % 60;
-
-
+    
+    
     // calculo valor horas
     valorBruto = parseFloat(valorHr * totalHorasDecimal);
+    
+    // cria um objeto
+    let registro = {
+        dataEntrada: dataFormatadaE,
+        horasEntrada: horasE,
+        dataSaida: dataFormatadaS,
+        horasSaida: horasS,
+        saidaDescanso: saidaDescanso,
+        voltaDescanso: voltaDescanso,
+        tempoDescanso: `${totalHDescanso}h ${totalMinDescanso}min`,
+        tempoTrabalhado: `${totalDHoras}h ${totalDMinutos}min`,
+        totalMinutos: tempoDiaTrabalhado
+    }
+    
+    registros.push(registro);
+    mostrarRegistros();
+    calcularTotal();
+   
 
+    console.log(registros);
+    
     // Visualização dos dados na tela
-    dados.innerHTML += `<tr><td>${dataFormatadaE}</td><td>${horasE}</td><td>${dataFormatadaS}</td><td>${horasS}</td><td>${saidaDescanso}</td><td>${voltaDescanso}</td><td>${totalHDescanso}h ${totalMinDescanso}min</td><td>${totalDHoras}h ${totalDMinutos}min </td></tr>`;
+    // dados.innerHTML += `<tr><td>${dataFormatadaE}</td><td>${horasE}</td><td>${dataFormatadaS}</td><td>${horasS}</td><td>${saidaDescanso}</td><td>${voltaDescanso}</td><td>${totalHDescanso}h ${totalMinDescanso}min</td><td>${totalDHoras}h ${totalDMinutos}min </td></tr>`;
 
     verSomaHoras.textContent = (totalGHoras + "h " + totalGMinutos + "min");
     verValorBruto.textContent = ("R$" + valorBruto);
-
+    
 });
 
 // ---------------------------------------------------------------------------
