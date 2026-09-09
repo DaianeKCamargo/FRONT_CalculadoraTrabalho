@@ -46,6 +46,41 @@
             <input type="time" name="hVoltaD" id="hVoltaD" required>
             <button id="enviarDado" type="submit"> Enviar </button>
         </form>
+        <div id="modalEditar" class="modal">
+
+            <div class="conteudoModal">
+
+                <h2>Editar registro</h2>
+
+                <form id="formEditar">
+
+                    <label for="editDataE">Data de entrada:</label>
+                    <input type="date" id="editDataE">
+
+                    <label for="editHoraE">Hora de entrada:</label>
+                    <input type="time" id="editHoraE">
+
+                    <label for="editDataS">Data de saída:</label>
+                    <input type="date" id="editDataS">
+
+                    <label for="editHoraS">Hora de saída:</label>
+                    <input type="time" id="editHoraS">
+
+                    <label for="editSaidaD">Saída para descanso:</label>
+                    <input type="time" id="editSaidaD">
+
+                    <label for="editVoltaD">Volta do descanso:</label>
+                    <input type="time" id="editVoltaD">
+
+                    <button type="button" id="cancelarEdicao">Cancelar</button>
+
+                    <button type="submit">Salvar alterações</button>
+
+                </form>
+
+            </div>
+
+        </div>
 
         <div class="passo3">
             <P> <span class="passo">Passo 3:</span> Clique para somar todas as horas <span

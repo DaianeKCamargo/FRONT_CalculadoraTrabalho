@@ -23,15 +23,24 @@ passo1.addEventListener("submit", function (evento) {
 
 // puxar do html para JS
 const passo2 = document.getElementById('passo2');
+const formEdit = document.getElementById('formEdit');
 const dataE = document.getElementById('dataE');
+const editDataE = document.getElementById('editDataE');
 const entradaHoras = document.getElementById('hEntrada');
+const editEntradaHoras = document.getElementById('editHoraE');
 const dataS = document.getElementById('dataS')
+const editDataS = document.getElementById('editDataS');
 const saidaHoras = document.getElementById('hSaida');
+const editSaidaHoras = document.getElementById('editHoraS');
 const HSaidaD = document.getElementById('hSaidaD');
+const editHSaidaD = document.getElementById('editSaidaD');
 const HVoltaD = document.getElementById('hVoltaD');
+const editHVoltaD = document.getElementById('editVoltaD');
 const dados = document.getElementById('dados');
 const verSomaHoras = document.getElementById('totalHoraGeral');
 const verValorBruto = document.getElementById('valorBruto');
+
+const modalEditar = document.getElementById('modalEditar');
 
 
 
@@ -45,6 +54,7 @@ let voltaDescanso = 0;
 
 // armazenar dentro de um array o objeto
 let registros = [];
+let indiceEditando = null;
 
 
 // conversão para o calculo de horas
@@ -82,6 +92,28 @@ function excluirRegistro(indice) {
     calcularTotal();
 }
 
+function editarRegistro(indice) {
+    let registro = registros[indice];
+    indiceEditando = indice;
+    let dataEntrada = registro.dataEntrada.split("/").reverse().join("-");
+    let dataSaida = registro.dataSaida.split("/").reverse().join("-");
+
+    editDataE.value = dataEntrada;
+    editEntradaHoras.value = registro.horasEntrada;
+    editDataS.value = dataSaida;
+    editSaidaHoras.value = registro.horasSaida;
+    editHSaidaD.value = registro.saidaDescanso;
+    editHVoltaD.value = registro.voltaDescanso;
+
+    console.log(registro);
+}
+
+formEdit.addEventListener("submit", function(evento){
+        evento.preventDefault();
+
+        
+    })
+
 function mostrarRegistros() {
     dados.innerHTML = "";
 
@@ -98,6 +130,7 @@ function mostrarRegistros() {
                 <td>${registro.tempoTrabalhado}</td>
                 <td>
                     <button onclick="excluirRegistro(${indice})"> Excluir </button>
+                    <button onclick="editarRegistro(${indice})"> Editar </button>
                 </td>
             </tr>
         `;
@@ -181,17 +214,19 @@ passo2.addEventListener("submit", function (evento) {
         totalMinutos: tempoDiaTrabalhado
     }
     
-    registros.push(registro);
+    if (indiceEditando !== null) {
+        registros[indiceEditando] = registro;
+        indiceEditando = null;
+    } else {
+        registros.push(registro);
+    }
     mostrarRegistros();
     calcularTotal();
    
-
-    console.log(registros);
     
     // Visualização dos dados na tela
     // dados.innerHTML += `<tr><td>${dataFormatadaE}</td><td>${horasE}</td><td>${dataFormatadaS}</td><td>${horasS}</td><td>${saidaDescanso}</td><td>${voltaDescanso}</td><td>${totalHDescanso}h ${totalMinDescanso}min</td><td>${totalDHoras}h ${totalDMinutos}min </td></tr>`;
-
-    verSomaHoras.textContent = (totalGHoras + "h " + totalGMinutos + "min");
+    // verSomaHoras.textContent = (totalGHoras + "h " + totalGMinutos + "min");
     verValorBruto.textContent = ("R$" + valorBruto);
 
     
