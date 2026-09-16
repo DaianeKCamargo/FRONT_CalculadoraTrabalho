@@ -93,6 +93,39 @@ label {
     background-color: #fff;
 }
 
+.tabelaResponsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tabelaResponsive table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 1.3rem;
+}
+
+.tabelaResponsive th,
+.tabelaResponsive td {
+    border: 1px solid #d5d5d5;
+    padding: 0.8rem 0.6rem;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+.tabelaResponsive td:last-child {
+    min-width: 170px;
+}
+
+.tabelaResponsive td:last-child>* {
+    display: inline-block;
+    margin: 0.2rem;
+}
+
 .calculo {
     display: flex;
     flex-direction: row;
@@ -109,7 +142,60 @@ label {
 }
 
 .modal {
+    position: fixed;
+    inset: 0;
     display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 10;
+}
+
+.conteudoModal {
+    width: min(90vw, 600px);
+    background: #fff;
+    border: 1px solid #333;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+}
+
+.conteudoModal h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#formEditar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+    gap: 1rem 2rem;
+    align-items: center;
+}
+
+#formEditar label {
+    display: block;
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+#formEditar input {
+    width: 100%;
+    margin: 0.5rem 0 0;
+}
+
+#formEditar button {
+    margin-top: 1rem;
+}
+
+.botoesPasso1 {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.resetar {
+    background-color: #d8d0d0;
+    border: 1px solid #8a8a8a;
 }
 
 /* JS */
@@ -118,20 +204,24 @@ label {
     box-shadow: 0 0 5px #333;
 }
 
-
 button {
     display: block;
     margin: 0 auto;
     background-color: #c4bdbd;
     color: #333;
     border: none;
-    padding: 0.5rem;
+    padding: 0.6rem 1.2rem;
     cursor: pointer;
     font-size: 1.6rem;
     box-shadow: 3px -2px 2px #353535;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 
     &:active {
         box-shadow: none;
+    }
+
+    &:hover {
+        transform: translateY(-1px);
     }
 }
 
@@ -167,6 +257,11 @@ button {
         }
     }
 
+    .botoesPasso1 {
+        flex-direction: column;
+        width: 100%;
+    }
+
     input,
     label {
         font-size: 1.6rem;
@@ -189,5 +284,15 @@ button {
 
     .resultado {
         width: 100%;
+        padding: 1rem;
+    }
+
+    .tabelaResponsive table {
+        min-width: 760px;
+        font-size: 1.1rem;
+    }
+
+    #formEditar {
+        grid-template-columns: 1fr;
     }
 }
